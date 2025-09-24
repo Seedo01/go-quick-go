@@ -18,21 +18,21 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Build Trust in
+              Making Farmers
               <span className="block bg-gradient-to-r from-accent to-yellow-300 bg-clip-text text-transparent">
-                Agricultural Supply Chains
+                Bankable
               </span>
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              FarmCred's blockchain-powered trust layer provides transparent, verifiable credentials for farmers, 
-              supply chain tracking, and agricultural data integrity.
+              FarmCred delivers digital farmer IDs and dynamic credit scoring to de-risk formal credit for smallholder farmers. 
+              Our USSD and cooperative-driven approach ensures rural accessibility.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button variant="hero" size="lg" className="text-lg px-8 py-4">
-                Start Building Trust
+                Get Credit Access
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10">
-                View Demo
+                Lender Portal
               </Button>
             </div>
           </div>
@@ -41,30 +41,30 @@ const Hero = () => {
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
               <div className="flex items-center mb-4">
                 <Shield className="w-8 h-8 text-accent mr-3" />
-                <h3 className="text-xl font-semibold text-white">Trust Verification</h3>
+                <h3 className="text-xl font-semibold text-white">Digital Farmer IDs</h3>
               </div>
               <p className="text-white/80">
-                Blockchain-verified farmer credentials and agricultural practices with immutable trust scores.
+                Verifiable digital identities with comprehensive farmer profiles and agricultural history for credit assessment.
               </p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
               <div className="flex items-center mb-4">
                 <CheckCircle className="w-8 h-8 text-success mr-3" />
-                <h3 className="text-xl font-semibold text-white">Supply Chain Tracking</h3>
+                <h3 className="text-xl font-semibold text-white">Dynamic Credit Scoring</h3>
               </div>
               <p className="text-white/80">
-                End-to-end traceability from farm to consumer with real-time verification and quality assurance.
+                Real-time credit assessment based on farming data, production history, and cooperative membership.
               </p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
               <div className="flex items-center mb-4">
                 <BarChart3 className="w-8 h-8 text-trust mr-3" />
-                <h3 className="text-xl font-semibold text-white">Data Analytics</h3>
+                <h3 className="text-xl font-semibold text-white">De-Risking Tools</h3>
               </div>
               <p className="text-white/80">
-                Comprehensive analytics dashboard for agricultural performance and trust metrics.
+                USSD accessibility and cooperative integration creating win-win solutions for lenders and farmers.
               </p>
             </div>
           </div>

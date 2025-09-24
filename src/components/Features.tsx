@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   CreditCard, 
   Shield, 
@@ -93,11 +94,11 @@ const Features = () => {
               Join 350+ cooperatives and thousands of farmers already using FarmCred to access formal credit and strengthen agricultural financing.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white text-primary hover:bg-white/90">
-                Become a Partner
+              <Button asChild variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white text-primary hover:bg-white/90">
+                <Link to="/partner">Become a Partner</Link>
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10 bg-transparent">
-                Lender Demo
+              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10 bg-transparent">
+                <Link to="/demo">Lender Demo</Link>
               </Button>
             </div>
           </div>

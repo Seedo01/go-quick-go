@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-farm-landscape.jpg";
+import heroImage from "@/assets/hero-farm.jpg";
 import { Shield, CheckCircle, BarChart3 } from "lucide-react";
 
 const Hero = () => {
@@ -8,10 +8,10 @@ const Hero = () => {
       <div className="absolute inset-0">
         <img 
           src={heroImage} 
-          alt="Modern agricultural landscape with green fields and farming equipment" 
-          className="w-full h-full object-cover opacity-20"
+          alt="Farmer working in lush green agricultural fields" 
+          className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70"></div>
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">

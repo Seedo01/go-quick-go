@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   ArrowLeft, 
   Play, 
@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 
 const Demo = () => {
+  const navigate = useNavigate();
+  
   const demoFeatures = [
     {
       icon: CreditCard,
@@ -134,6 +136,13 @@ const Demo = () => {
                     variant={index === 0 ? "default" : "outline"} 
                     className="w-full"
                     size="lg"
+                    onClick={() => {
+                      if (index === 0) {
+                        window.open('https://calendly.com/farmcred-demo', '_blank');
+                      } else {
+                        navigate('/lender-dashboard');
+                      }
+                    }}
                   >
                     {index === 0 ? "Schedule Live Demo" : "Start Self-Guided Tour"}
                   </Button>
@@ -177,11 +186,21 @@ const Demo = () => {
             Join leading financial institutions using FarmCred to safely expand into agricultural finance
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-white/90">
+            <Button 
+              variant="secondary" 
+              size="lg" 
+              className="bg-white text-primary hover:bg-white/90"
+              onClick={() => window.open('https://calendly.com/farmcred-demo', '_blank')}
+            >
               <Calendar className="w-4 h-4 mr-2" />
               Book Live Demo
             </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 bg-transparent">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-white/30 text-white hover:bg-white/10 bg-transparent"
+              onClick={() => navigate('/signup')}
+            >
               <Play className="w-4 h-4 mr-2" />
               Start Free Trial
             </Button>

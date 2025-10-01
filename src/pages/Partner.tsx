@@ -48,11 +48,20 @@ const Partner = () => {
       requirements: ["Banking license", "Credit portfolio management", "Digital infrastructure"]
     },
     {
+      title: "Agribusiness for Input Supply",
+      description: "Partner to provide inputs to farmers with flexible credit terms",
+      requirements: ["Agricultural input supply chain", "Distribution network", "Quality assurance systems"]
+    },
+    {
       title: "Development Organizations",
       description: "Scale agricultural finance impact programs",
       requirements: ["Agricultural focus", "Impact measurement", "Community presence"]
     }
   ];
+
+  const handleStartApplication = () => {
+    window.location.href = "mailto:partnerships@farmcred.com?subject=Partnership Application&body=Hello, I would like to explore a partnership with FarmCred.%0D%0A%0D%0AOrganization Name:%0D%0APartner Type:%0D%0AContact Person:%0D%0APhone:%0D%0A%0D%0APlease tell us about your interest in partnering with FarmCred:";
+  };
 
   return (
     <main className="min-h-screen bg-background">
@@ -130,7 +139,11 @@ const Partner = () => {
               <Phone className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Schedule a Call</h3>
               <p className="text-muted-foreground mb-4">Speak directly with our partnership team</p>
-              <Button variant="outline" className="w-full">
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => window.open('https://calendly.com/farmcred', '_blank')}
+              >
                 Book Meeting
               </Button>
             </Card>
@@ -139,7 +152,11 @@ const Partner = () => {
               <Mail className="w-8 h-8 text-primary mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Send Details</h3>
               <p className="text-muted-foreground mb-4">Email us your partnership proposal</p>
-              <Button variant="outline" className="w-full">
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => window.location.href = 'mailto:partnerships@farmcred.com'}
+              >
                 Contact Us
               </Button>
             </Card>
@@ -149,7 +166,12 @@ const Partner = () => {
             <h3 className="text-2xl font-bold text-white mb-4">
               Join 350+ Partners Already Making Impact
             </h3>
-            <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-white/90">
+            <Button 
+              variant="secondary" 
+              size="lg" 
+              className="bg-white text-primary hover:bg-white/90"
+              onClick={handleStartApplication}
+            >
               Start Partnership Application
             </Button>
           </div>

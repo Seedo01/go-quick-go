@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-farm.jpg";
 import { Shield, CheckCircle, BarChart3 } from "lucide-react";
 
@@ -28,11 +29,11 @@ const Hero = () => {
               Our USSD and cooperative-driven approach ensures rural accessibility.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="hero" size="lg" className="text-lg px-8 py-4">
-                Get Credit Access
+              <Button asChild variant="hero" size="lg" className="text-lg px-8 py-4">
+                <Link to="/signup">Get Credit Access</Link>
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10">
-                Lender Portal
+              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10">
+                <Link to="/demo-access">Lender Portal</Link>
               </Button>
             </div>
           </div>

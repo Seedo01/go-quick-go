@@ -17,37 +17,43 @@ const Features = () => {
       icon: CreditCard,
       title: "Dynamic Credit Scoring",
       description: "Real-time creditworthiness assessment using agricultural data, payment history, and cooperative membership for accurate risk evaluation.",
-      color: "text-primary"
+      color: "text-primary",
+      link: "/demo"
     },
     {
       icon: Shield,  
       title: "Digital Farmer IDs",
       description: "Comprehensive digital identity system with verifiable credentials, farming history, and financial profile for trusted lending.",
-      color: "text-trust"
+      color: "text-trust",
+      link: "/demo"
     },
     {
       icon: BarChart3,
       title: "De-Risking Analytics",
       description: "Advanced algorithms reduce lending risk through multi-factor analysis of farm productivity, weather patterns, and market conditions.",
-      color: "text-success"
+      color: "text-success",
+      link: "/demo"
     },
     {
       icon: Users,
       title: "Cooperative Integration",
       description: "Seamless integration with agricultural cooperatives to leverage group guarantees and collective farming data.",
-      color: "text-accent"
+      color: "text-accent",
+      link: "/partner"
     },
     {
       icon: Phone,
       title: "USSD Accessibility",
       description: "No-internet USSD technology ensures rural farmers can access credit services even in remote areas without smartphones.",
-      color: "text-warning"
+      color: "text-warning",
+      link: "/partner"
     },
     {
       icon: Smartphone,
       title: "Lender Dashboard",
       description: "Comprehensive lending platform with portfolio management, risk assessment tools, and automated underwriting systems.",
-      color: "text-trust"
+      color: "text-trust",
+      link: "/demo-access"
     }
   ];
 
@@ -77,8 +83,10 @@ const Features = () => {
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   {feature.description}
                 </p>
-                <Button variant="ghost" className="p-0 h-auto font-medium text-primary hover:text-primary/80 group-hover:translate-x-1 transition-transform duration-300">
-                  Learn more <ArrowRight className="w-4 h-4 ml-1" />
+                <Button asChild variant="ghost" className="p-0 h-auto font-medium text-primary hover:text-primary/80 group-hover:translate-x-1 transition-transform duration-300">
+                  <Link to={feature.link}>
+                    Learn more <ArrowRight className="w-4 h-4 ml-1" />
+                  </Link>
                 </Button>
               </Card>
             );

@@ -140,7 +140,7 @@ const Demo = () => {
                       if (index === 0) {
                         window.open('https://calendly.com/farmcred-demo', '_blank');
                       } else {
-                        navigate('/lender-dashboard');
+                        navigate('/demo-access');
                       }
                     }}
                   >

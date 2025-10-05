@@ -10,7 +10,11 @@ import {
   CheckCircle,
   Clock,
   FileText,
-  BarChart3
+  BarChart3,
+  CreditCard,
+  Shield,
+  Target,
+  Award
 } from "lucide-react";
 
 const LenderDashboard = () => {
@@ -189,6 +193,135 @@ const LenderDashboard = () => {
                 </div>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Sections */}
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold mb-6">Platform Features</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Dynamic Credit Scoring */}
+            <Card className="p-6 border-0 shadow-soft">
+              <div className="flex items-center mb-4">
+                <div className="p-3 bg-primary/10 rounded-full mr-4">
+                  <CreditCard className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Dynamic Credit Scoring</h3>
+                  <p className="text-sm text-muted-foreground">AI-powered creditworthiness analysis</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                  <span className="text-sm">Agricultural Data Integration</span>
+                  <CheckCircle className="w-4 h-4 text-success" />
+                </div>
+                <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                  <span className="text-sm">Real-time Score Updates</span>
+                  <CheckCircle className="w-4 h-4 text-success" />
+                </div>
+                <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                  <span className="text-sm">Multi-factor Analysis</span>
+                  <CheckCircle className="w-4 h-4 text-success" />
+                </div>
+              </div>
+            </Card>
+
+            {/* Risk Assessment Tools */}
+            <Card className="p-6 border-0 shadow-soft">
+              <div className="flex items-center mb-4">
+                <div className="p-3 bg-primary/10 rounded-full mr-4">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Risk Assessment Tools</h3>
+                  <p className="text-sm text-muted-foreground">Comprehensive risk evaluation</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                  <span className="text-sm">Weather & Climate Risk</span>
+                  <span className="text-xs font-semibold text-success">Low Risk</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                  <span className="text-sm">Market Price Volatility</span>
+                  <span className="text-xs font-semibold text-warning">Medium Risk</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                  <span className="text-sm">Repayment History</span>
+                  <span className="text-xs font-semibold text-success">Low Risk</span>
+                </div>
+              </div>
+            </Card>
+
+            {/* Portfolio Analytics */}
+            <Card className="p-6 border-0 shadow-soft">
+              <div className="flex items-center mb-4">
+                <div className="p-3 bg-primary/10 rounded-full mr-4">
+                  <BarChart3 className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Portfolio Analytics</h3>
+                  <p className="text-sm text-muted-foreground">Performance metrics and insights</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-secondary/30 rounded-lg">
+                  <div className="text-2xl font-bold text-primary">$2.4M</div>
+                  <div className="text-xs text-muted-foreground">Total Portfolio</div>
+                </div>
+                <div className="p-3 bg-secondary/30 rounded-lg">
+                  <div className="text-2xl font-bold text-success">92%</div>
+                  <div className="text-xs text-muted-foreground">Repayment Rate</div>
+                </div>
+                <div className="p-3 bg-secondary/30 rounded-lg">
+                  <div className="text-2xl font-bold text-trust">45</div>
+                  <div className="text-xs text-muted-foreground">Active Loans</div>
+                </div>
+                <div className="p-3 bg-secondary/30 rounded-lg">
+                  <div className="text-2xl font-bold text-warning">$156K</div>
+                  <div className="text-xs text-muted-foreground">Avg Loan Size</div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Farmer Management */}
+            <Card className="p-6 border-0 shadow-soft">
+              <div className="flex items-center mb-4">
+                <div className="p-3 bg-primary/10 rounded-full mr-4">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Farmer Management</h3>
+                  <p className="text-sm text-muted-foreground">Digital ID and verification system</p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg">
+                  <div className="flex items-center">
+                    <Award className="w-4 h-4 text-primary mr-2" />
+                    <span className="text-sm">Verified Credentials</span>
+                  </div>
+                  <span className="text-xs font-semibold">5,234</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg">
+                  <div className="flex items-center">
+                    <Target className="w-4 h-4 text-success mr-2" />
+                    <span className="text-sm">Active Farmers</span>
+                  </div>
+                  <span className="text-xs font-semibold">4,892</span>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg">
+                  <div className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-trust mr-2" />
+                    <span className="text-sm">Complete Profiles</span>
+                  </div>
+                  <span className="text-xs font-semibold">96%</span>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
       </section>

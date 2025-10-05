@@ -16,8 +16,18 @@ import {
   Target,
   Award
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useState } from "react";
 
 const LenderDashboard = () => {
+  const [selectedApplication, setSelectedApplication] = useState<typeof recentApplications[0] | null>(null);
+  
   const stats = [
     { label: "Active Loans", value: "1,234", change: "+12%", icon: DollarSign, trend: "up" },
     { label: "Total Farmers", value: "5,678", change: "+8%", icon: Users, trend: "up" },
@@ -186,7 +196,7 @@ const LenderDashboard = () => {
                   </div>
                   
                   <div className="ml-6">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={() => setSelectedApplication(app)}>
                       View Details
                     </Button>
                   </div>
@@ -347,6 +357,103 @@ const LenderDashboard = () => {
           </Card>
         </div>
       </section>
+
+      {/* Farmer Details Dialog */}
+      <Dialog open={!!selectedApplication} onOpenChange={() => setSelectedApplication(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Farmer Application Details</DialogTitle>
+            <DialogDescription>
+              Complete profile and credit assessment for {selectedApplication?.name}
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedApplication && (
+            <div className="space-y-6">
+              {/* Status Badge */}
+              <div className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium w-fit ${getStatusBadge(selectedApplication.status)}`}>
+                {getStatusIcon(selectedApplication.status)}
+                {selectedApplication.status.replace("-", " ").toUpperCase()}
+              </div>
+
+              {/* Basic Information */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Basic Information</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Farmer ID</span>
+                    <p className="font-semibold">{selectedApplication.id}</p>
+                  </div>
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Full Name</span>
+                    <p className="font-semibold">{selectedApplication.name}</p>
+                  </div>
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Cooperative</span>
+                    <p className="font-semibold">{selectedApplication.cooperative}</p>
+                  </div>
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Primary Crop</span>
+                    <p className="font-semibold">{selectedApplication.crop}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Financial Information */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Financial Information</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Loan Amount</span>
+                    <p className="text-xl font-bold text-primary">{selectedApplication.amount}</p>
+                  </div>
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Credit Score</span>
+                    <p className="text-xl font-bold text-success">{selectedApplication.score}</p>
+                  </div>
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Farm Size</span>
+                    <p className="font-semibold">{selectedApplication.landSize}</p>
+                  </div>
+                  <div className="p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm text-muted-foreground">Risk Level</span>
+                    <p className="font-semibold text-success">Low</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Details */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Credit Assessment</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm">Payment History</span>
+                    <span className="text-sm font-semibold text-success">Excellent</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm">Cooperative Standing</span>
+                    <span className="text-sm font-semibold text-success">Active Member</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-lg">
+                    <span className="text-sm">Farm Productivity</span>
+                    <span className="text-sm font-semibold text-success">High</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4">
+                <Button className="flex-1" variant={selectedApplication.status === "approved" ? "default" : "outline"}>
+                  {selectedApplication.status === "approved" ? "Approved" : "Approve Application"}
+                </Button>
+                <Button className="flex-1" variant="outline">
+                  Request More Info
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </main>
   );
 };

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-farm.jpg";
+import heroImage from "@/assets/Screenshot (398).png";
 import { Shield, CheckCircle, BarChart3 } from "lucide-react";
 
 const Hero = () => {
@@ -19,9 +19,9 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Making Farmers
+              Derisking Agricultural
               <span className="block bg-gradient-to-r from-accent to-yellow-300 bg-clip-text text-transparent">
-                Bankable
+                Lending with Data
               </span>
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">

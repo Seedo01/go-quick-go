@@ -5,17 +5,17 @@ import { Shield, CheckCircle, BarChart3 } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-hero">
+    <section className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <img 
-          src={heroImage} 
-          alt="Farmer working in lush green agricultural fields" 
-          className="w-full h-full object-cover opacity-30"
+        <img
+          src={heroImage}
+          alt="Farmer working in lush green agricultural fields"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
       </div>
-      
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">

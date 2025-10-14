@@ -1,12 +1,12 @@
 import Hero from "@/components/Hero";
-import TrustDashboard from "@/components/TrustDashboard";
+import HowItWorksSection from "@/components/HowItWorksSection";
 import Features from "@/components/Features";
 
 const Index = () => {
   return (
     <main className="min-h-screen">
       <Hero />
-      <TrustDashboard />
+      <HowItWorksSection />
       <Features />
     </main>
   );

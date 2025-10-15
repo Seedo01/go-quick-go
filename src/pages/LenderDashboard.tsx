@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
-  TrendingUp, 
-  Users, 
-  DollarSign, 
+import { Link, useNavigate } from "react-router-dom";
+import {
+  ArrowLeft,
+  TrendingUp,
+  Users,
+  DollarSign,
   AlertTriangle,
   CheckCircle,
   Clock,
@@ -14,7 +14,9 @@ import {
   CreditCard,
   Shield,
   Target,
-  Award
+  Award,
+  LogOut,
+  User as UserIcon
 } from "lucide-react";
 import {
   Dialog,
@@ -23,58 +25,90 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 const LenderDashboard = () => {
   const [selectedApplication, setSelectedApplication] = useState<typeof recentApplications[0] | null>(null);
+  const { user, profile, loading, signOut } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate('/signup');
+    }
+  }, [user, loading, navigate]);
+
+  const handleSignOut = async () => {
+    await signOut();
+    toast({
+      title: "Signed out",
+      description: "You have been signed out successfully."
+    });
+    navigate('/');
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!user || !profile) {
+    return null;
+  }
   
   const stats = [
-    { label: "Active Loans", value: "1,234", change: "+12%", icon: DollarSign, trend: "up" },
+    { label: "Active Loans", value: "₦1,234,000", change: "+12%", icon: DollarSign, trend: "up" },
     { label: "Total Farmers", value: "5,678", change: "+8%", icon: Users, trend: "up" },
     { label: "Pending Applications", value: "89", change: "-5%", icon: Clock, trend: "down" },
     { label: "Default Rate", value: "2.3%", change: "-40%", icon: AlertTriangle, trend: "down" }
   ];
 
   const recentApplications = [
-    { 
-      id: "F-1234", 
-      name: "Jane Doe", 
-      cooperative: "Green Valley Co-op", 
-      amount: "$5,000", 
-      score: 82, 
+    {
+      id: "F-1234",
+      name: "Chukwudi Okafor",
+      cooperative: "Lagos Farmers Cooperative",
+      amount: "₦500,000",
+      score: 82,
       status: "approved",
-      landSize: "2.5 acres",
-      crop: "Coffee"
+      landSize: "2.5 hectares",
+      crop: "Cassava"
     },
-    { 
-      id: "F-1235", 
-      name: "John Smith", 
-      cooperative: "Highland Farmers", 
-      amount: "$8,500", 
-      score: 75, 
+    {
+      id: "F-1235",
+      name: "Aisha Mohammed",
+      cooperative: "Kano Agricultural Society",
+      amount: "₦850,000",
+      score: 75,
       status: "pending",
-      landSize: "4.0 acres",
-      crop: "Tea"
+      landSize: "4.0 hectares",
+      crop: "Rice"
     },
-    { 
-      id: "F-1236", 
-      name: "Mary Johnson", 
-      cooperative: "Sunrise Agricultural", 
-      amount: "$3,200", 
-      score: 68, 
+    {
+      id: "F-1236",
+      name: "Ngozi Eze",
+      cooperative: "Enugu Farmers Union",
+      amount: "₦320,000",
+      score: 68,
       status: "under-review",
-      landSize: "1.8 acres",
+      landSize: "1.8 hectares",
       crop: "Vegetables"
     },
-    { 
-      id: "F-1237", 
-      name: "David Wilson", 
-      cooperative: "Valley View Co-op", 
-      amount: "$12,000", 
-      score: 88, 
+    {
+      id: "F-1237",
+      name: "Ibrahim Bello",
+      cooperative: "Plateau State Co-op",
+      amount: "₦1,200,000",
+      score: 88,
       status: "approved",
-      landSize: "6.5 acres",
-      crop: "Coffee"
+      landSize: "6.5 hectares",
+      crop: "Maize"
     }
   ];
 
@@ -104,17 +138,38 @@ const LenderDashboard = () => {
               Back to Demo Info
             </Link>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground">Demo Mode</span>
-              <Button variant="outline" size="sm">
-                Exit Demo
+              <div className="text-right mr-4">
+                <p className="text-sm font-semibold">{profile.full_name}</p>
+                <p className="text-xs text-muted-foreground">{profile.organization || 'FarmCred User'}</p>
+              </div>
+              <Button variant="outline" size="sm" onClick={handleSignOut}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
               </Button>
             </div>
           </div>
           <div>
-            <h1 className="text-3xl font-bold mb-2">Lender Dashboard</h1>
+            <h1 className="text-3xl font-bold mb-2">Welcome, {profile.full_name}</h1>
             <p className="text-muted-foreground">
-              Interactive demo - Explore FarmCred's credit infrastructure platform
+              {profile.address} | {profile.phone}
             </p>
+            <div className="mt-2 flex gap-2">
+              {profile.bvn_verified && (
+                <span className="text-xs bg-success/20 text-success px-2 py-1 rounded">
+                  BVN Verified
+                </span>
+              )}
+              {profile.nin_verified && (
+                <span className="text-xs bg-success/20 text-success px-2 py-1 rounded">
+                  NIN Verified
+                </span>
+              )}
+              {profile.farm_verified && (
+                <span className="text-xs bg-success/20 text-success px-2 py-1 rounded">
+                  Farm Verified
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -279,7 +334,7 @@ const LenderDashboard = () => {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-secondary/30 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">$2.4M</div>
+                  <div className="text-2xl font-bold text-primary">₦240M</div>
                   <div className="text-xs text-muted-foreground">Total Portfolio</div>
                 </div>
                 <div className="p-3 bg-secondary/30 rounded-lg">
@@ -291,7 +346,7 @@ const LenderDashboard = () => {
                   <div className="text-xs text-muted-foreground">Active Loans</div>
                 </div>
                 <div className="p-3 bg-secondary/30 rounded-lg">
-                  <div className="text-2xl font-bold text-warning">$156K</div>
+                  <div className="text-2xl font-bold text-warning">₦15.6M</div>
                   <div className="text-xs text-muted-foreground">Avg Loan Size</div>
                 </div>
               </div>

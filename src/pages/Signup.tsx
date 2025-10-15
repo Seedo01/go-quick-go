@@ -3,10 +3,12 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Building2, Mail, Phone, User, Lock } from "lucide-react";
+import { ArrowLeft, Building2, Mail, Phone, User, Lock, MapPin, CreditCard, IdCard } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
+import { verificationService } from "@/services/verificationService";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -15,14 +17,19 @@ const Signup = () => {
     fullName: "",
     email: "",
     phone: "",
+    address: "",
     organization: "",
+    bvn: "",
+    nin: "",
+    farmMappingId: "",
     password: "",
     confirmPassword: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (formData.password !== formData.confirmPassword) {
       toast({
         title: "Password mismatch",
@@ -32,14 +39,118 @@ const Signup = () => {
       return;
     }
 
-    toast({
-      title: "Account created successfully!",
-      description: "Welcome to FarmCred. Redirecting to demo dashboard...",
-    });
+    if (!verificationService.validateNigerianPhone(formData.phone)) {
+      toast({
+        title: "Invalid phone number",
+        description: "Please enter a valid Nigerian phone number (e.g., +234...)",
+        variant: "destructive"
+      });
+      return;
+    }
 
-    setTimeout(() => {
-      navigate("/lender-dashboard");
-    }, 1500);
+    if (!verificationService.validateBVN(formData.bvn)) {
+      toast({
+        title: "Invalid BVN",
+        description: "BVN must be 11 digits",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!verificationService.validateNIN(formData.nin)) {
+      toast({
+        title: "Invalid NIN",
+        description: "NIN must be 11 digits",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const [bvnResult, ninResult, farmResult] = await Promise.all([
+        verificationService.verifyBVN({ bvn: formData.bvn }),
+        verificationService.verifyNIN({ nin: formData.nin }),
+        verificationService.verifyFarmMapping({ farmMappingId: formData.farmMappingId })
+      ]);
+
+      if (!bvnResult.success || !ninResult.success || !farmResult.success) {
+        const failedVerifications = [];
+        if (!bvnResult.success) failedVerifications.push('BVN');
+        if (!ninResult.success) failedVerifications.push('NIN');
+        if (!farmResult.success) failedVerifications.push('Farm Mapping');
+
+        toast({
+          title: "Verification Failed",
+          description: `Incorrect details: ${failedVerifications.join(', ')}. Please check and try again.`,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (authError) {
+        toast({
+          title: "Signup Error",
+          description: authError.message,
+          variant: "destructive"
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      if (authData.user) {
+        const { error: profileError } = await supabase
+          .from('user_profiles')
+          .insert({
+            id: authData.user.id,
+            full_name: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
+            bvn: formData.bvn,
+            nin: formData.nin,
+            farm_mapping_id: formData.farmMappingId,
+            organization: formData.organization,
+            verification_status: 'verified',
+            bvn_verified: true,
+            nin_verified: true,
+            farm_verified: true
+          });
+
+        if (profileError) {
+          toast({
+            title: "Profile Error",
+            description: "Account created but profile setup failed. Please contact support.",
+            variant: "destructive"
+          });
+          setIsLoading(false);
+          return;
+        }
+
+        toast({
+          title: "Account created successfully!",
+          description: "All verifications passed. Welcome to FarmCred!",
+        });
+
+        setTimeout(() => {
+          navigate("/lender-dashboard");
+        }, 1500);
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive"
+      });
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,8 +224,24 @@ const Signup = () => {
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="+234 XXX XXX XXXX"
                   value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="address" className="flex items-center">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  Contact Address
+                </Label>
+                <Input
+                  id="address"
+                  name="address"
+                  type="text"
+                  placeholder="Lagos, Nigeria"
+                  value={formData.address}
                   onChange={handleChange}
                   required
                 />
@@ -131,6 +258,56 @@ const Signup = () => {
                   type="text"
                   placeholder="Your Financial Institution"
                   value={formData.organization}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="bvn" className="flex items-center">
+                  <CreditCard className="w-4 h-4 mr-2" />
+                  Bank Verification Number (BVN)
+                </Label>
+                <Input
+                  id="bvn"
+                  name="bvn"
+                  type="text"
+                  placeholder="12345678901"
+                  maxLength={11}
+                  value={formData.bvn}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="nin" className="flex items-center">
+                  <IdCard className="w-4 h-4 mr-2" />
+                  National Identification Number (NIN)
+                </Label>
+                <Input
+                  id="nin"
+                  name="nin"
+                  type="text"
+                  placeholder="12345678901"
+                  maxLength={11}
+                  value={formData.nin}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="farmMappingId" className="flex items-center">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  Farm Mapping ID
+                </Label>
+                <Input
+                  id="farmMappingId"
+                  name="farmMappingId"
+                  type="text"
+                  placeholder="FM-XXXX-XXXX"
+                  value={formData.farmMappingId}
                   onChange={handleChange}
                   required
                 />
@@ -171,8 +348,8 @@ const Signup = () => {
               </div>
 
               <div className="pt-4">
-                <Button type="submit" size="lg" className="w-full">
-                  Create Account & Start Trial
+                <Button type="submit" size="lg" className="w-full" disabled={isLoading}>
+                  {isLoading ? "Verifying & Creating Account..." : "Create Account & Start Trial"}
                 </Button>
               </div>
 

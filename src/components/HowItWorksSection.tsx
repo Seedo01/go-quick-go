@@ -16,7 +16,7 @@ const HowItWorksSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
+        <div className="grid md:grid-cols-3 gap-12 mb-16">
           <div>
             <h3 className="text-2xl font-bold text-foreground mb-8 text-center md:text-left">For Farmers</h3>
             <div className="space-y-6">
@@ -107,6 +107,47 @@ const HowItWorksSection = () => {
                     <h4 className="font-semibold text-foreground mb-2">Make Fast Decisions</h4>
                     <p className="text-muted-foreground text-sm">
                       Reduce processing time with instant creditworthiness data and confident approvals.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-foreground mb-8 text-center md:text-left">For Cooperatives</h3>
+            <div className="space-y-6">
+              <Card className="p-6 bg-gradient-card border-0 shadow-medium hover:shadow-lg transition-shadow">
+                <div className="flex items-start gap-4">
+                  <Building2 className="w-10 h-10 text-primary flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Register Members</h4>
+                    <p className="text-muted-foreground text-sm">
+                      Onboard your farmer members and help them build verified credit profiles.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-gradient-card border-0 shadow-medium hover:shadow-lg transition-shadow">
+                <div className="flex items-start gap-4">
+                  <Shield className="w-10 h-10 text-trust flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Verify & Vouch</h4>
+                    <p className="text-muted-foreground text-sm">
+                      Strengthen member applications by providing verification and cooperative standing.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-gradient-card border-0 shadow-medium hover:shadow-lg transition-shadow">
+                <div className="flex items-start gap-4">
+                  <CheckCircle className="w-10 h-10 text-success flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Grow Together</h4>
+                    <p className="text-muted-foreground text-sm">
+                      Increase member success rates and strengthen your cooperative's reputation.
                     </p>
                   </div>
                 </div>

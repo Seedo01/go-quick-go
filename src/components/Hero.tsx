@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/Screenshot (398).png";
-import { Shield, CheckCircle, BarChart3 } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -16,8 +15,8 @@ const Hero = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="text-center lg:text-left">
+        <div className="flex items-center justify-center">
+          <div className="text-center max-w-4xl">
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Derisking Agricultural
               <span className="block bg-gradient-to-r from-accent to-yellow-300 bg-clip-text text-transparent">
@@ -25,48 +24,16 @@ const Hero = () => {
               </span>
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              FarmCred delivers digital farmer IDs and dynamic credit scoring to de-risk formal credit for smallholder farmers. 
+              FarmCred delivers dynamic credit scoring to de-risk formal credit for smallholder farmers.
               Our USSD and cooperative-driven approach ensures rural accessibility.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="hero" size="lg" className="text-lg px-8 py-4">
                 <Link to="/signup">Get Credit Access</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10">
                 <Link to="/demo-access">Lender Portal</Link>
               </Button>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-6">
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div className="flex items-center mb-4">
-                <Shield className="w-8 h-8 text-accent mr-3" />
-                <h3 className="text-xl font-semibold text-white">Digital Farmer IDs</h3>
-              </div>
-              <p className="text-white/80">
-                Verifiable digital identities with comprehensive farmer profiles and agricultural history for credit assessment.
-              </p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div className="flex items-center mb-4">
-                <CheckCircle className="w-8 h-8 text-success mr-3" />
-                <h3 className="text-xl font-semibold text-white">Dynamic Credit Scoring</h3>
-              </div>
-              <p className="text-white/80">
-                Real-time credit assessment based on farming data, production history, and cooperative membership.
-              </p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div className="flex items-center mb-4">
-                <BarChart3 className="w-8 h-8 text-trust mr-3" />
-                <h3 className="text-xl font-semibold text-white">De-Risking Tools</h3>
-              </div>
-              <p className="text-white/80">
-                USSD accessibility and cooperative integration creating win-win solutions for lenders and farmers.
-              </p>
             </div>
           </div>
         </div>

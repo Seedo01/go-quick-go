@@ -1,4 +1,6 @@
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Sprout, Shield, Users, TrendingUp } from "lucide-react";
 
 const ImpactHighlights = () => {
@@ -62,6 +64,25 @@ const ImpactHighlights = () => {
               </p>
             </div>
           </Card>
+        </div>
+
+        <div className="mt-16 text-center">
+          <div className="bg-gradient-primary rounded-2xl p-8 lg:p-12">
+            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+              Ready to Make Your Farmers Bankable?
+            </h3>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Join 350+ cooperatives and thousands of farmers already using FarmCred to access formal credit and strengthen agricultural financing.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white text-primary hover:bg-white/90">
+                <Link to="/partner">Become a Partner</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10 bg-transparent">
+                <Link to="/demo">Lender Demo</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

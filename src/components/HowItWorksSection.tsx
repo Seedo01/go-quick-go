@@ -172,28 +172,6 @@ const HowItWorksSection = () => {
             </Button>
           </div>
         </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          <Card className="p-6 text-center bg-gradient-card border-0 shadow-soft">
-            <div className="text-2xl font-bold text-foreground">18,500+</div>
-            <div className="text-sm text-muted-foreground">Bankable Farmers</div>
-          </Card>
-
-          <Card className="p-6 text-center bg-gradient-card border-0 shadow-soft">
-            <div className="text-2xl font-bold text-foreground">$12.4M</div>
-            <div className="text-sm text-muted-foreground">Credit Facilitated</div>
-          </Card>
-
-          <Card className="p-6 text-center bg-gradient-card border-0 shadow-soft">
-            <div className="text-2xl font-bold text-foreground">94.2%</div>
-            <div className="text-sm text-muted-foreground">Repayment Rate</div>
-          </Card>
-
-          <Card className="p-6 text-center bg-gradient-card border-0 shadow-soft">
-            <div className="text-2xl font-bold text-foreground">350+</div>
-            <div className="text-sm text-muted-foreground">Partner Cooperatives</div>
-          </Card>
-        </div>
       </div>
     </section>
   );

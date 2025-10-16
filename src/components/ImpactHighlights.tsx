@@ -72,7 +72,7 @@ const ImpactHighlights = () => {
               Ready to Make Your Farmers Bankable?
             </h3>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join 350+ cooperatives and thousands of farmers already using FarmCred to access formal credit and strengthen agricultural financing.
+              Join cooperatives and farmers already using FarmCred to access formal credit and strengthen agricultural financing.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white text-primary hover:bg-white/90">

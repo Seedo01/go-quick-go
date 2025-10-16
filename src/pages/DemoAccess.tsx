@@ -13,29 +13,6 @@ const DemoAccess = () => {
   const [accessCode, setAccessCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleAccess = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    // Demo access code validation
-    setTimeout(() => {
-      if (accessCode.toLowerCase() === "demo2024" || accessCode.toLowerCase() === "farmcred") {
-        toast({
-          title: "Access Granted",
-          description: "Welcome to the FarmCred Lender Dashboard demo",
-        });
-        navigate("/lender-dashboard");
-      } else {
-        toast({
-          title: "Invalid Access Code",
-          description: "Please use the code provided in your demo invitation",
-          variant: "destructive",
-        });
-        setIsLoading(false);
-      }
-    }, 800);
-  };
-
   return (
     <main className="min-h-screen bg-secondary/10 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -55,7 +32,7 @@ const DemoAccess = () => {
             </p>
           </div>
 
-          <form onSubmit={handleAccess} className="space-y-6">
+          <form className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="accessCode">Access Code</Label>
               <Input
@@ -71,7 +48,28 @@ const DemoAccess = () => {
               </p>
             </div>
 
-            <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full"
+              size="lg"
+              disabled={isLoading}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsLoading(true);
+                setTimeout(() => {
+                  if (accessCode.toLowerCase() === "demo2024" || accessCode.toLowerCase() === "farmcred") {
+                    navigate("/lender-dashboard");
+                  } else {
+                    toast({
+                      title: "Invalid Access Code",
+                      description: "Please use the code provided in your demo invitation",
+                      variant: "destructive",
+                    });
+                    setIsLoading(false);
+                  }
+                }, 500);
+              }}
+            >
               {isLoading ? "Verifying..." : "Access Dashboard"}
             </Button>
           </form>

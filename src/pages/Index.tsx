@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import ImpactHighlights from "@/components/ImpactHighlights";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import Features from "@/components/Features";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -10,6 +11,7 @@ const Index = () => {
       <Features />
       <HowItWorksSection />
       <ImpactHighlights />
+      <Footer />
     </main>
   );
 };

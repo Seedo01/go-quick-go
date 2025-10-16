@@ -10,6 +10,9 @@ import Partner from "./pages/Partner";
 import Demo from "./pages/Demo";
 import Signup from "./pages/Signup";
 import LenderDashboard from "./pages/LenderDashboard";
+import FarmerDashboard from "./pages/FarmerDashboard";
+import CooperativeDashboard from "./pages/CooperativeDashboard";
+import FAQ from "./pages/FAQ";
 import DemoAccess from "./pages/DemoAccess";
 import NotFound from "./pages/NotFound";
 
@@ -29,7 +32,10 @@ const App = () => (
           <Route path="/demo" element={<Demo />} />
           <Route path="/demo-access" element={<DemoAccess />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/lender-dashboard" element={<LenderDashboard />} />
+          <Route path="/farmer-dashboard" element={<FarmerDashboard />} />
+          <Route path="/cooperative-dashboard" element={<CooperativeDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

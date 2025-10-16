@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Target, Users, Zap, Heart } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const About = () => {
   return (
@@ -96,6 +97,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

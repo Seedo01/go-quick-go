@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
-  Users, 
-  TrendingUp, 
-  Shield, 
+import Footer from "@/components/Footer";
+import {
+  ArrowLeft,
+  Users,
+  TrendingUp,
+  Shield,
   Globe,
   CheckCircle,
   Phone,
@@ -177,6 +178,7 @@ const Partner = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

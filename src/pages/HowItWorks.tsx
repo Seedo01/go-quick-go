@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import Footer from "@/components/Footer";
 import {
   Smartphone,
   UserPlus,
@@ -227,6 +228,7 @@ const HowItWorks = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

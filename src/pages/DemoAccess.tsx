@@ -78,18 +78,13 @@ const DemoAccess = () => {
             <p className="text-sm text-muted-foreground mb-4">
               Don't have an access code?
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button variant="outline" className="flex-1" asChild>
-                <Link to="/signup">Start Free Trial</Link>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="flex-1"
-                onClick={() => window.open('https://calendly.com/farmcred-demo', '_blank')}
-              >
-                Book Demo
-              </Button>
-            </div>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => window.open('https://calendly.com/farmcred-demo', '_blank')}
+            >
+              Book Demo
+            </Button>
           </div>
         </Card>
       </div>
